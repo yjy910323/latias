@@ -8,9 +8,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'BI推荐接口'),
     );
   }
 }
@@ -25,39 +25,85 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+      drawer: Drawer(
+        child: Center(
+          child: Text("asdf"),
         ),
       ),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: <Widget>[
+          Container(
+            child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Text("data");
+                },
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2)),
+          ),
+          Container(
+            child: Column(
+              children: <Widget>[
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+                Text("data"),
+              ],
+            ),
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: null,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
