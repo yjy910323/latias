@@ -12,16 +12,19 @@ class Poster extends StatefulWidget {
 class _PosterState extends State<Poster> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 4,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (context, index) {
-            return PosterIndex();
-          }),
-    );
+    return GridView.builder(
+        // padding: EdgeInsets.all(10),
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 6,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
+          childAspectRatio: 1.7,
+        ),
+        itemBuilder: (context, index) {
+          return PosterIndex();
+        });
   }
 }

@@ -50,9 +50,13 @@ class _HomePageState extends State<MyHomePage> {
         physics: BouncingScrollPhysics(),
         children: <Widget>[
           Container(child: Poster()),
-          Container(child: Quota())
+          Container(child: Quota()),
+          Container(child: Poster()),
+          Container(child: Poster()),
         ],
       ),
+
+      // body: ScrollControllerTestRoute(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         tooltip: 'Increment',

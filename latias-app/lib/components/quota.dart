@@ -10,54 +10,15 @@ class Quota extends StatefulWidget {
 }
 
 class _QuotaState extends State<Quota> {
+  ScrollController controller = new ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex(),
-          QuotaIndex()
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        QuotaIndex(controller),
+        QuotaIndex(controller),
+      ],
     );
   }
 }
