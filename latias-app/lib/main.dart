@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:latias/components/poster.dart';
+import 'package:latias/components/quota.dart';
+
+import 'model/plate.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'BI推荐接口'),
+      home: MyHomePage(title: 'safd'),
     );
   }
 }
@@ -21,10 +25,16 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<MyHomePage> {
+  Future<List<Plate>> getPlates() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 0));
+    List plates = <Plate>[Plate(1, "核心数据")];
+    return plates;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,64 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: <Widget>[
-          Container(
-            child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Text("data");
-                },
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2)),
-          ),
-          Container(
-            child: Column(
-              children: <Widget>[
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-              ],
-            ),
-          )
+          Container(child: Poster()),
+          Container(child: Quota())
         ],
       ),
       floatingActionButton: FloatingActionButton(
