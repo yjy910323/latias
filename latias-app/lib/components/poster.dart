@@ -3,13 +3,25 @@ import 'package:flutter/material.dart';
 import 'PosterIndex.dart';
 
 class Poster extends StatefulWidget {
-  Poster({Key key}) : super(key: key);
+  var metrics;
+
+  Poster({Key key, metrics}) : super(key: key);
 
   @override
-  _PosterState createState() => _PosterState();
+  _PosterState createState() => _PosterState(metrics);
 }
 
 class _PosterState extends State<Poster> {
+  var metrics;
+
+  _PosterState(metrics);
+
+  @override
+  void initState() {
+    super.initState();
+    // print("metrics:" + metrics);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

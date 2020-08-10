@@ -8,5 +8,6 @@
   <modules>
     <module>latias-common</module>
     <module>latias-app</module>
+    <module>latias-server</module>
   </modules>
 </project>
