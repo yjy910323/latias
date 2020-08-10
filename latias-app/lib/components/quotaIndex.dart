@@ -2,63 +2,86 @@ import 'package:flutter/material.dart';
 
 class QuotaIndex extends StatefulWidget {
   ScrollController controller;
-
   QuotaIndex(this.controller, {Key key}) : super(key: key);
 
   @override
-  _QuotaIndexState createState() => _QuotaIndexState(controller, "qwerwqer");
+  _QuotaIndexState createState() => _QuotaIndexState(controller);
 }
 
 class _QuotaIndexState extends State<QuotaIndex> {
   ScrollController controller;
-  String title;
-  _QuotaIndexState(this.controller, this.title);
+  String title = "assadf";
+  double _titleLeft = 0;
+
+  _QuotaIndexState(this.controller);
 
   @override
   void initState() {
     super.initState();
-    controller.addListener(() {
-      double a = controller.offset;
-      if(a > 0) {
-        setState(() {
-          title = "xzcvzvczxv";
-        });
-      }
+    this.controller.addListener(() {
+      setState(() {
+        this._titleLeft =
+            this.controller.offset > 0 ? this.controller.offset : 0;
+        this.title = "asadfasdf";
+      });
     });
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: Row(
-        children: <Widget>[
-          Container(
-            child: Text("data"),
-            width: 100,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          height: 30,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                left: _titleLeft,
+                child: Text("asdf"),
+              )
+            ],
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: ListView.builder(
-                controller: controller,
-                scrollDirection: Axis.horizontal,
-                physics: BouncingScrollPhysics(),
-                itemCount: 6,
-                itemBuilder: (BuildContext context, int index) {
-                  return Text("${this.title}");
-                },
-              ),
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              child: Text("qps"),
+              width: 100,
             ),
-          ),
-        ],
-      ),
+            Container(
+              child: Text("成功率"),
+              width: 100,
+            ),
+            Container(
+              child: Text("499率"),
+              width: 100,
+            ),
+            Container(
+              child: Text("请求时长"),
+              width: 100,
+            ),
+            Container(
+              child: Text("data"),
+              width: 100,
+            ),
+            Container(
+              child: Text("data"),
+              width: 100,
+            ),
+            Container(
+              child: Text("data"),
+              width: 100,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
