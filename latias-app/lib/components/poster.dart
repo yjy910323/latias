@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'PosterIndex.dart';
 
+@immutable
 class Poster extends StatefulWidget {
-  var metrics;
+  final List<String> metrics;
 
-  Poster({Key key, metrics}) : super(key: key);
+  Poster({Key key, this.metrics}) : super(key: key);
 
   @override
-  _PosterState createState() => _PosterState(metrics);
+  _PosterState createState() => _PosterState(metrics: this.metrics);
 }
 
 class _PosterState extends State<Poster> {
-  var metrics;
+  final List<String> metrics;
 
-  _PosterState(metrics);
+  _PosterState({this.metrics});
 
   @override
   void initState() {
@@ -28,7 +29,7 @@ class _PosterState extends State<Poster> {
         // padding: EdgeInsets.all(10),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 6,
+        itemCount: this.metrics.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 5,
@@ -36,7 +37,7 @@ class _PosterState extends State<Poster> {
           childAspectRatio: 1.7,
         ),
         itemBuilder: (context, index) {
-          return PosterIndex();
+          return PosterIndex(this.metrics[index]);
         });
   }
 }

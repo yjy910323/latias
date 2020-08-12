@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class PosterIndex extends StatefulWidget {
-  PosterIndex({Key key}) : super(key: key);
+  final String metric;
+
+  PosterIndex(this.metric, {Key key}) : super(key: key);
 
   @override
-  _PosterIndexState createState() => _PosterIndexState();
+  _PosterIndexState createState() => _PosterIndexState(this.metric);
 }
 
 class _PosterIndexState extends State<PosterIndex> {
+  String metric = "***";
+
+  _PosterIndexState(this.metric);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.green
-        )
-      ),
+      decoration: BoxDecoration(border: Border.all(color: Colors.green)),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("QPS", style: TextStyle(color: Colors.grey, fontSize: 16)),
+            Text(this.metric,
+                style: TextStyle(color: Colors.grey, fontSize: 16)),
             Text(
               "18264398",
               style: TextStyle(

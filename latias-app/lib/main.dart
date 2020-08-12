@@ -3,6 +3,10 @@ import 'package:latias/components/poster.dart';
 import 'package:latias/components/quota.dart';
 
 import 'mock/plate.dart' as mock;
+import 'model/core/modularDefination.dart';
+import 'model/core/plateDefination.dart';
+import 'model/dto/plateResp.dart';
+import 'model/dto/platesResp.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,16 +33,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyHomePage> {
-  Future getPlates() async {
+  Future<PlateDefination> getPlate(int plateId) async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 0));
-    var plates = mock.plates['data'];
-    return plates;
+    PlateResp plateResp = PlateResp.fromJson(mock.plate);
+    return plateResp.data;
   }
 
-  Future getPlate(int plateId) async {
+  Future<List<PlateDefination>> getPlates() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 0));
-    var plates = mock.plate['data'];
-    return plates;
+    PlatesResp platesResp = PlatesResp.fromJson(mock.plates);
+    return platesResp.data;
   }
 
   @override
@@ -69,15 +73,15 @@ class _HomePageState extends State<MyHomePage> {
       // ),
       body: FutureBuilder(
           future: getPlate(1),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            var modularDefinations = snapshot.data['modularDefinations'];
+          builder: (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
+            List<ModularDefination> modularDefinations = snapshot.data.modularDefinations;
             return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: modularDefinations.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    child: modularDefinations[index]['type'] == 'POSTER'
-                        ? Poster(metrics: modularDefinations[index]['metrics'])
+                    child: modularDefinations[index].type == 'POSTER'
+                        ? Poster(metrics: modularDefinations[index].metrics)
                         : Quota(),
                   );
                 });
