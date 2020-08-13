@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:latias/model/core/modularDefination.dart';
 
 import 'PosterIndex.dart';
 
 @immutable
 class Poster extends StatefulWidget {
-  final List<String> metrics;
+  final ModularDefination modularDefination;
 
-  Poster({Key key, this.metrics}) : super(key: key);
+  Poster({Key key, this.modularDefination}) : super(key: key);
 
   @override
-  _PosterState createState() => _PosterState(metrics: this.metrics);
+  _PosterState createState() =>
+      _PosterState(modularDefination: this.modularDefination);
 }
 
 class _PosterState extends State<Poster> {
-  final List<String> metrics;
+  final ModularDefination modularDefination;
 
-  _PosterState({this.metrics});
+  _PosterState({this.modularDefination});
 
   @override
   void initState() {
     super.initState();
-    // print("metrics:" + metrics);
   }
 
   @override
@@ -29,7 +30,7 @@ class _PosterState extends State<Poster> {
         // padding: EdgeInsets.all(10),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: this.metrics.length,
+        itemCount: this.modularDefination.metrics.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 5,
@@ -37,7 +38,7 @@ class _PosterState extends State<Poster> {
           childAspectRatio: 1.7,
         ),
         itemBuilder: (context, index) {
-          return PosterIndex(this.metrics[index]);
+          return PosterIndex(this.modularDefination.metrics[index]);
         });
   }
 }

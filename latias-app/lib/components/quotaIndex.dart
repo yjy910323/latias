@@ -1,19 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:latias/model/core/modularDefination.dart';
+import 'package:latias/model/core/quotaModular.dart';
+import 'package:latias/model/dto/quotaModularResp.dart';
 
+import 'mock/modular.dart' as mock;
+
+@immutable
 class QuotaIndex extends StatefulWidget {
-  ScrollController controller;
-  QuotaIndex(this.controller, {Key key}) : super(key: key);
+  final ScrollController controller;
+  final ModularDefination modularDefination;
+
+  QuotaIndex(this.controller, {Key key, this.modularDefination})
+      : super(key: key);
 
   @override
-  _QuotaIndexState createState() => _QuotaIndexState(controller);
+  _QuotaIndexState createState() =>
+      _QuotaIndexState(controller, modularDefination: this.modularDefination);
 }
 
 class _QuotaIndexState extends State<QuotaIndex> {
   ScrollController controller;
-  String title = "assadf";
+  String title = "****";
   double _titleLeft = 0;
+  ModularDefination modularDefination;
+  QuotaModular quotaModular;
 
-  _QuotaIndexState(this.controller);
+  _QuotaIndexState(this.controller, {this.modularDefination});
+
+  Future<QuotaModular> getModular() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 0));
+    QuotaModularResp quotaResp = QuotaModularResp.fromJson(mock.quotaModular);
+    return quotaResp.data;
+  }
 
   @override
   void initState() {
@@ -22,7 +40,6 @@ class _QuotaIndexState extends State<QuotaIndex> {
       setState(() {
         this._titleLeft =
             this.controller.offset > 0 ? this.controller.offset : 0;
-        this.title = "asadfasdf";
       });
     });
   }
@@ -44,7 +61,7 @@ class _QuotaIndexState extends State<QuotaIndex> {
             children: <Widget>[
               Positioned(
                 left: _titleLeft,
-                child: Text("asdf"),
+                child: Text(this.title),
               )
             ],
           ),

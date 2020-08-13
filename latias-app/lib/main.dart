@@ -73,16 +73,18 @@ class _HomePageState extends State<MyHomePage> {
       // ),
       body: FutureBuilder(
           future: getPlate(1),
-          builder: (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
-            List<ModularDefination> modularDefinations = snapshot.data.modularDefinations;
+          builder:
+              (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
+            List<ModularDefination> modularDefinations =
+                snapshot.data.modularDefinations;
             return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: modularDefinations.length,
                 itemBuilder: (context, index) {
                   return Container(
                     child: modularDefinations[index].type == 'POSTER'
-                        ? Poster(metrics: modularDefinations[index].metrics)
-                        : Quota(),
+                        ? Poster(modularDefination: modularDefinations[index])
+                        : Quota(modularDefination: modularDefinations[index]),
                   );
                 });
           }),
