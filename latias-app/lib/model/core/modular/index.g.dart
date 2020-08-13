@@ -9,10 +9,10 @@ part of 'index.dart';
 Index _$IndexFromJson(Map<String, dynamic> json) {
   return Index(
       name: json['name'] as String,
-      metrics: (json['metrics'] as List)
-          ?.map((e) =>
-              e == null ? null : Metric.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+      metrics: (json['metrics'] as Map<String, dynamic>)?.map(
+        (k, e) => MapEntry(
+            k, e == null ? null : Metric.fromJson(e as Map<String, dynamic>)),
+      ));
 }
 
 Map<String, dynamic> _$IndexToJson(Index instance) =>

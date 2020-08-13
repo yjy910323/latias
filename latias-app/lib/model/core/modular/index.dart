@@ -7,7 +7,7 @@ part 'index.g.dart';
 @JsonSerializable()
 class Index {
   String name;
-  List<Metric> metrics;
+  Map<String, Metric> metrics;
 
   Index({this.name, this.metrics});
 

@@ -48,7 +48,7 @@ class _HomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    print(getPlates());
+    // print(getPlates());
   }
 
   @override
@@ -62,21 +62,13 @@ class _HomePageState extends State<MyHomePage> {
           child: Text("asdf"),
         ),
       ),
-      // body: ListView(
-      //   physics: BouncingScrollPhysics(),
-      //   children: <Widget>[
-      //     Container(child: Poster()),
-      //     Container(child: Quota()),
-      //     Container(child: Poster()),
-      //     Container(child: Poster()),
-      //   ],
-      // ),
       body: FutureBuilder(
           future: getPlate(1),
-          builder:
-              (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
-            List<ModularDefination> modularDefinations =
-                snapshot.data.modularDefinations;
+          builder: (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
+            if(!snapshot.hasData) {
+              return Text(snapshot.connectionState.toString());
+            }
+            List<ModularDefination> modularDefinations = snapshot.data.modularDefinations;
             return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: modularDefinations.length,
@@ -88,7 +80,6 @@ class _HomePageState extends State<MyHomePage> {
                   );
                 });
           }),
-      // body: ScrollControllerTestRoute(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         tooltip: 'Increment',

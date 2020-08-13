@@ -1,45 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:latias/model/core/modular/index.dart';
+import 'package:latias/model/core/modular/metric.dart';
 import 'package:latias/model/core/modularDefination.dart';
 import 'package:latias/model/core/quotaModular.dart';
-import 'package:latias/model/dto/quotaModularResp.dart';
-
-import 'mock/modular.dart' as mock;
 
 @immutable
 class QuotaIndex extends StatefulWidget {
   final ScrollController controller;
   final ModularDefination modularDefination;
+  final Index index;
 
-  QuotaIndex(this.controller, {Key key, this.modularDefination})
+  QuotaIndex(this.controller, {Key key, this.modularDefination, this.index})
       : super(key: key);
 
   @override
-  _QuotaIndexState createState() =>
-      _QuotaIndexState(controller, modularDefination: this.modularDefination);
+  _QuotaIndexState createState() => _QuotaIndexState(controller,
+      modularDefination: this.modularDefination, index: this.index);
 }
 
 class _QuotaIndexState extends State<QuotaIndex> {
   ScrollController controller;
-  String title = "****";
   double _titleLeft = 0;
   ModularDefination modularDefination;
-  QuotaModular quotaModular;
+  Index index;
+  List<Widget> _metricsW = [];
 
-  _QuotaIndexState(this.controller, {this.modularDefination});
+  _QuotaIndexState(this.controller, {this.modularDefination, this.index});
 
-  Future<QuotaModular> getModular() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 0));
-    QuotaModularResp quotaResp = QuotaModularResp.fromJson(mock.quotaModular);
-    return quotaResp.data;
+  List<Widget> _buildMetrics(Index index) {
+    List<Widget> metrics = [];
+    for (String metric in modularDefination.metrics) {
+      Metric m = index.metrics[metric];
+      if (m != null) {
+        metrics.add(
+          Container(
+            child: Text(m.value.value.toString()),
+            width: 100,
+          ),
+        );
+      } else {
+        metrics.add(
+          Container(
+            child: Text("/"),
+            width: 100,
+          ),
+        );
+      }
+    }
+    return metrics;
   }
 
   @override
   void initState() {
     super.initState();
+    setState(() {
+      this._metricsW = this._buildMetrics(this.index);
+    });
     this.controller.addListener(() {
       setState(() {
-        this._titleLeft =
-            this.controller.offset > 0 ? this.controller.offset : 0;
+        this._titleLeft = this.controller.offset > 0 ? this.controller.offset : 0;
       });
     });
   }
@@ -55,49 +74,25 @@ class _QuotaIndexState extends State<QuotaIndex> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          height: 30,
+          height: 20,
           width: MediaQuery.of(context).size.width,
           child: Stack(
+            overflow: Overflow.visible,
             children: <Widget>[
               Positioned(
                 left: _titleLeft,
-                child: Text(this.title),
+                width: MediaQuery.of(context).size.width + _titleLeft,
+                child: Container(
+                  child: Text(
+                    this.index.name,
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
               )
             ],
           ),
         ),
-        Row(
-          children: <Widget>[
-            Container(
-              child: Text("qps"),
-              width: 100,
-            ),
-            Container(
-              child: Text("成功率"),
-              width: 100,
-            ),
-            Container(
-              child: Text("499率"),
-              width: 100,
-            ),
-            Container(
-              child: Text("请求时长"),
-              width: 100,
-            ),
-            Container(
-              child: Text("data"),
-              width: 100,
-            ),
-            Container(
-              child: Text("data"),
-              width: 100,
-            ),
-            Container(
-              child: Text("data"),
-              width: 100,
-            ),
-          ],
-        ),
+        Row(children: _metricsW),
       ],
     );
   }
