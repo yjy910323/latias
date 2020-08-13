@@ -5,17 +5,15 @@ import java.math.BigDecimal;
 public class Figures {
 
 	public static Figure ratio(Figure value, Figure onValue) {
-		Figure figure = new Figure();
-		BigDecimal raito = value.getValue().subtract(onValue.getValue()).divide(onValue.getValue());
-		figure.setValue(raito);
+		BigDecimal raito = value.getValue().subtract(onValue.getValue()).divide(onValue.getValue(), 2, BigDecimal.ROUND_HALF_UP);
+		Figure figure = new Figure(raito);
 		return figure;
 	}
 
 	
 	public static Figure diff(Figure value, Figure onValue) {
-		Figure figure = new Figure();
-		BigDecimal diff = value.getValue().subtract(onValue.getValue());
-		figure.setValue(diff);
+		BigDecimal diff = value.getValue().subtract(onValue.getValue()).divide(BigDecimal.ONE, 2, BigDecimal.ROUND_HALF_UP);
+		Figure figure = new Figure(diff);
 		return figure;
 	}
 
