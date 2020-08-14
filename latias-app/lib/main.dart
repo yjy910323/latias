@@ -64,11 +64,13 @@ class _HomePageState extends State<MyHomePage> {
       ),
       body: FutureBuilder(
           future: getPlate(1),
-          builder: (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
-            if(!snapshot.hasData) {
+          builder:
+              (BuildContext context, AsyncSnapshot<PlateDefination> snapshot) {
+            if (!snapshot.hasData) {
               return Text(snapshot.connectionState.toString());
             }
-            List<ModularDefination> modularDefinations = snapshot.data.modularDefinations;
+            List<ModularDefination> modularDefinations =
+                snapshot.data.modularDefinations;
             return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: modularDefinations.length,
