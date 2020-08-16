@@ -96,94 +96,180 @@ class _QuotaIndexState extends State<QuotaIndex> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          height: 30,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            overflow: Overflow.visible,
-            children: <Widget>[
-              Positioned(
-                left: _titleLeft,
-                width: MediaQuery.of(context).size.width + _titleLeft,
-                child: Container(
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        this.index.name,
-                        style: TextStyle(fontSize: 10),
-                      ),
-                      Container(
-                        width: 200,
-                        height: 30,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text(
-                                "明细",
-                                style: TextStyle(fontSize: 10),
-                              ),
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return SimpleDialog(
-                                        backgroundColor: Colors.white,
-                                        title: Text("test"),
-                                        children: <Widget>[
-                                          Container(
-                                            height: 100,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: getLine(),
-                                          )
-                                        ],
-                                      );
-                                    });
-                              },
-                            ),
-                            FlatButton(
-                              child: Text(
-                                "多维",
-                                style: TextStyle(fontSize: 10),
-                              ),
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return SimpleDialog(
-                                        backgroundColor: Colors.white,
-                                        title: Text("test"),
-                                        children: <Widget>[
-                                          Container(
-                                            height: 100,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: getLine(),
-                                          )
-                                        ],
-                                      );
-                                    });
-                              },
-                            ),
-                          ],
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              backgroundColor: Colors.white,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("test"),
+                  Container(
+                    child: ButtonBar(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.filter),
+                          onPressed: () {},
                         ),
-                      ),
+                        IconButton(
+                          icon: Icon(Icons.filter),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              children: <Widget>[
+                Container(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: getLine(),
+                ),
+                Container(
+                  child: DataTable(
+                    columns: [
+                      DataColumn(label: Text('时间')),
+                      DataColumn(label: Text('QPS')),
+                      DataColumn(label: Text('较昨日')),
+                      DataColumn(label: Text('差值')),
+                    ],
+                    rows: [
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('老孟')),
+                        DataCell(Text('15484')),
+                        DataCell(Text('12%')),
+                        DataCell(Text('120')),
+                      ]),
+                      
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ],
+            );
+          },
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 20,
+              width: MediaQuery.of(context).size.width,
+              child: Stack(
+                overflow: Overflow.visible,
+                children: <Widget>[
+                  Positioned(
+                    left: _titleLeft,
+                    width: MediaQuery.of(context).size.width + _titleLeft,
+                    child: Container(
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            this.index.name,
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Row(children: _metricsW),
+          ],
         ),
-        Row(children: _metricsW),
-      ],
+      ),
     );
   }
 }
