@@ -98,6 +98,8 @@ class _QuotaIndexState extends State<QuotaIndex> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Navigator.of(context).pushNamed("/modular");
+
         showDialog(
           context: context,
           builder: (context) {
@@ -228,7 +230,6 @@ class _QuotaIndexState extends State<QuotaIndex> {
                         DataCell(Text('12%')),
                         DataCell(Text('120')),
                       ]),
-                      
                     ],
                   ),
                 ),
