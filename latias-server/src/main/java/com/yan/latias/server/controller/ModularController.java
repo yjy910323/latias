@@ -1,11 +1,15 @@
 package com.yan.latias.server.controller;
 
+import java.util.Date;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yan.latias.common.model.modular.PosterModular;
+import com.yan.latias.common.model.modular.QuotaDetail;
 import com.yan.latias.common.model.modular.QuotaModular;
 import com.yan.latias.common.model.modular.support.Figure;
 import com.yan.latias.common.model.modular.support.Index;
@@ -37,6 +41,15 @@ public class ModularController {
             return ApiResponse.success(modular);
         }
 
+    }
+
+    @GetMapping("/modular/{modularId}/{indexId}")
+    public ApiResponse getDetail(@PathVariable(value = "modularId") Long modularId, @PathVariable(value = "indexId") Long indexId, @RequestParam(value = "start", required = false) Date start, @RequestParam(value = "end", required = false) Date end) {
+        QuotaDetail quotaDetail = new QuotaDetail();
+        
+        
+
+        return ApiResponse.success(quotaDetail);
     }
 
 }
