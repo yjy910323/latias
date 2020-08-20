@@ -10,7 +10,7 @@ public class ModularDefination {
     private String name;
     private Boolean nameVisible;
     private Modular.Type type;
-    private List<String> metrics;
+    private List<String> indexes;
 
     public Long getId() {
         return id;
@@ -44,12 +44,12 @@ public class ModularDefination {
         this.type = type;
     }
 
-    public List<String> getMetrics() {
-        return metrics;
-    }
+	public List<String> getIndexes() {
+		return indexes;
+	}
 
-    public void setMetrics(List<String> metrics) {
-        this.metrics = metrics;
-    }
+	public void setIndexes(List<String> indexes) {
+		this.indexes = indexes;
+	}
 
 }
