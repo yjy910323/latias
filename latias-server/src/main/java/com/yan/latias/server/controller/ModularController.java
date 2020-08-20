@@ -43,7 +43,7 @@ public class ModularController {
 
     }
 
-    @GetMapping("/modular/{modularId}/{indexId}")
+    @GetMapping("/modular/quota/{modularId}/{indexId}")
     public ApiResponse getDetail(@PathVariable(value = "modularId") Long modularId, @PathVariable(value = "indexId") Long indexId, @RequestParam(value = "start", required = false) Date start, @RequestParam(value = "end", required = false) Date end) {
         QuotaDetail quotaDetail = new QuotaDetail();
         
